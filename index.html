@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb Clone</title>
+    <link rel="icon" href="data:,">
+    <!-- Production-ready Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <style>
+        .airbnb-pink {
+            color: #FF5A5F;
+        }
+        .airbnb-pink-bg {
+            background-color: #FF5A5F;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <header class="border-b border-gray-200 sticky top-0 bg-white z-10">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <i class="fab fa-airbnb text-3xl airbnb-pink mr-2"></i>
+                    <span class="text-xl font-bold airbnb-pink hidden md:block">airbnb</span>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex items-center border border-gray-300 rounded-full py-2 px-4 shadow-sm hover:shadow-md transition-shadow">
+                    <input type="text" placeholder="Where are you going?" class="border-none focus:outline-none px-2 w-64">
+                    <div class="h-6 w-px bg-gray-300 mx-2"></div>
+                    <button class="airbnb-pink-bg text-white p-2 rounded-full">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block text-sm font-medium">Become a Host</button>
+                    <div class="flex items-center space-x-2 border border-gray-300 rounded-full p-2 md:hidden" id="mobileMenuButton">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                <div class="hidden md:flex items-center space-x-2 border border-gray-300 rounded-full p-2 cursor-pointer hover:shadow-md transition-all duration-200" id="userMenuButton">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-user-circle text-xl"></i>
+                </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div class="hidden absolute top-16 left-0 right-0 bg-white shadow-lg py-2 z-20 mobile-menu" id="mobileMenu">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign up</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Log in</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Host your home</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Help</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative">
+        <div class="bg-gray-100 h-96 w-full relative overflow-hidden">
+                <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-50236878/original/8a0a0a0a-0a0a-0a0a-0a0a-0a0a0a0a0a0a.jpeg" 
+                     alt="Airbnb background" 
+                     class="w-full h-full object-cover">
+            </div>
+            
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl px-4">
+                <div class="bg-white rounded-full shadow-lg p-1">
+                    <div class="flex items-center justify-between">
+                        <button class="px-6 py-3 font-medium">Anywhere</button>
+                        <div class="h-8 w-px bg-gray-300"></div>
+                        <button class="px-6 py-3 font-medium">Any week</button>
+                        <div class="h-8 w-px bg-gray-300"></div>
+                        <button class="px-6 py-3 text-gray-500">Add guests</button>
+                        <button class="airbnb-pink-bg text-white p-2 rounded-full">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold mb-4">Find places to stay on Airbnb</h1>
+            <p class="text-gray-600 mb-6">Discover entire homes and private rooms perfect for any trip.</p>
+        </section>
+
+        <!-- Property Listings -->
+        <section class="container mx-auto px-4 py-8">
+            <!-- Filter Controls -->
+            <div class="mb-8 p-4 bg-white rounded-lg shadow-sm">
+                <div class="flex flex-wrap items-center gap-4">
+                    <div class="filter-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Property Type</label>
+                        <select class="filter-select" data-filter="type">
+                            <option value="all">All Types</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="cabin">Cabin</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+                        <select class="filter-select" data-filter="price">
+                            <option value="all">Any Price</option>
+                            <option value="0-150">$0 - $150</option>
+                            <option value="150-250">$150 - $250</option>
+                            <option value="250+">$250+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+                        <select class="filter-select" data-filter="rating">
+                            <option value="all">Any Rating</option>
+                            <option value="4.5+">4.5+ Stars</option>
+                            <option value="4.8+">4.8+ Stars</option>
+                        </select>
+                    </div>
+                    <button id="resetFilters" class="ml-auto text-sm text-gray-600 hover:text-airbnb-pink">
+                        Reset Filters
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="propertyListings">
+                <!-- Property Card 1 -->
+                <div class="rounded-xl overflow-hidden transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg property-card" data-type="apartment" data-price="120" data-rating="4.92">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg" 
+                             alt="Modern loft interior" 
+                             class="w-full h-64 object-cover rounded-xl">
+                        <button class="absolute top-3 right-3 text-gray-700 favorite-btn">
+                            <i class="far fa-heart text-2xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3">
+                        <div class="flex justify-between">
+                            <h3 class="font-semibold">Modern Loft in Downtown</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 text-sm">4.92</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">10 miles away</p>
+                        <p class="text-gray-500 text-sm">Nov 12-17</p>
+                        <p class="mt-1"><span class="font-semibold">$120</span> night</p>
+                    </div>
+                </div>
+
+                <!-- Property Card 2 -->
+                <div class="rounded-xl overflow-hidden transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg property-card" data-type="villa" data-price="250" data-rating="4.85">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg" 
+                             alt="Beachfront villa exterior" 
+                             class="w-full h-64 object-cover rounded-xl">
+                        <button class="absolute top-3 right-3 text-gray-700 favorite-btn">
+                            <i class="far fa-heart text-2xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3">
+                        <div class="flex justify-between">
+                            <h3 class="font-semibold">Beachfront Villa</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 text-sm">4.85</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">5 miles away</p>
+                        <p class="text-gray-500 text-sm">Dec 1-6</p>
+                        <p class="mt-1"><span class="font-semibold">$250</span> night</p>
+                    </div>
+                </div>
+
+                <!-- Property Card 3 -->
+                <div class="rounded-xl overflow-hidden transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg property-card" data-type="cabin" data-price="180" data-rating="4.97">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/164558/pexels-photo-164558.jpeg" 
+                             alt="Cozy mountain cabin interior" 
+                             class="w-full h-64 object-cover rounded-xl">
+                        <button class="absolute top-3 right-3 text-gray-700 favorite-btn">
+                            <i class="far fa-heart text-2xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3">
+                        <div class="flex justify-between">
+                            <h3 class="font-semibold">Cozy Mountain Cabin</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 text-sm">4.97</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">25 miles away</p>
+                        <p class="text-gray-500 text-sm">Jan 5-10</p>
+                        <p class="mt-1"><span class="font-semibold">$180</span> night</p>
+                    </div>
+                </div>
+
+                <!-- Property Card 4 -->
+                <div class="rounded-xl overflow-hidden transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg property-card" data-type="apartment" data-price="135" data-rating="4.88">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg" 
+                             alt="Modern city apartment" 
+                             class="w-full h-64 object-cover rounded-xl">
+                        <button class="absolute top-3 right-3 text-gray-700 favorite-btn">
+                            <i class="far fa-heart text-2xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3">
+                        <div class="flex justify-between">
+                            <h3 class="font-semibold">Modern City Apartment</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 text-sm">4.88</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">2 miles from center</p>
+                        <p class="text-gray-500 text-sm">Dec 15-20</p>
+                        <p class="mt-1"><span class="font-semibold">$135</span> night</p>
+                    </div>
+                </div>
+
+                <!-- Property Card 5 -->
+                <div class="rounded-xl overflow-hidden transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg property-card" data-type="house" data-price="210" data-rating="4.95">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/206648/pexels-photo-206648.jpeg" 
+                             alt="Lakeside cottage" 
+                             class="w-full h-64 object-cover rounded-xl">
+                        <button class="absolute top-3 right-3 text-gray-700 favorite-btn">
+                            <i class="far fa-heart text-2xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3">
+                        <div class="flex justify-between">
+                            <h3 class="font-semibold">Lakeside Cottage</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 text-sm">4.95</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">Waterfront property</p>
+                        <p class="text-gray-500 text-sm">Jan 7-14</p>
+                        <p class="mt-1"><span class="font-semibold">$210</span> night</p>
+                    </div>
+                </div>
+
+                <!-- Property Card 6 -->
+                <div class="rounded-xl overflow-hidden transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg property-card" data-type="apartment" data-price="350" data-rating="4.99">
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg" 
+                             alt="Luxury penthouse" 
+                             class="w-full h-64 object-cover rounded-xl">
+                        <button class="absolute top-3 right-3 text-gray-700 favorite-btn">
+                            <i class="far fa-heart text-2xl"></i>
+                        </button>
+                    </div>
+                    <div class="mt-3">
+                        <div class="flex justify-between">
+                            <h3 class="font-semibold">Luxury Penthouse</h3>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-sm"></i>
+                                <span class="ml-1 text-sm">4.99</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">Downtown location</p>
+                        <p class="text-gray-500 text-sm">Feb 1-8</p>
+                        <p class="mt-1"><span class="font-semibold">$350</span> night</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-gray-200 py-8 mt-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Support -->
+                <div>
+                    <h3 class="font-bold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:underline">Help Center</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">AirCover</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">Safety information</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">Supporting people with disabilities</a></li>
+                    </ul>
+                </div>
+
+                <!-- Community -->
+                <div>
+                    <h3 class="font-bold mb-4">Community</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:underline">Airbnb.org: disaster relief</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">Combating discrimination</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hosting -->
+                <div>
+                    <h3 class="font-bold mb-4">Hosting</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:underline">Airbnb your home</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">AirCover for Hosts</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">Explore hosting resources</a></li>
+                    </ul>
+                </div>
+
+                <!-- Airbnb -->
+                <div>
+                    <h3 class="font-bold mb-4">Airbnb</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:underline">Newsroom</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">New features</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">Careers</a></li>
+                        <li><a href="#" class="text-gray-600 hover:underline">Investors</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <span class="text-sm">© 2023 Airbnb, Inc.</span>
+                    <a href="#" class="text-sm text-gray-600 hover:underline">Privacy</a>
+                    <a href="#" class="text-sm text-gray-600 hover:underline">Terms</a>
+                    <a href="#" class="text-sm text-gray-600 hover:underline">Sitemap</a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <span class="text-sm font-medium flex items-center">
+                        <i class="fas fa-globe mr-2"></i> English (US)
+                    </span>
+                    <span class="text-sm font-medium">
+                        $ USD
+                    </span>
+                    <div class="flex space-x-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
