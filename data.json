@@ -1,0 +1,20 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "type": "apartment",
+      "price": 120,
+      "rating": 4.92,
+      "title": "Modern Loft in Downtown",
+      "image": "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg"
+    },
+    {
+      "id": 2,
+      "type": "villa", 
+      "price": 250,
+      "rating": 4.85,
+      "title": "Beachfront Villa",
+      "image": "https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg"
+    }
+  ]
+}
