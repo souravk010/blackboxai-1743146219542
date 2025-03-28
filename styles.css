@@ -1,0 +1,59 @@
+/* Animation for property cards */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.property-card {
+    animation: fadeIn 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+.property-card:nth-child(1) { animation-delay: 0.1s; }
+.property-card:nth-child(2) { animation-delay: 0.2s; }
+.property-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Hover effects */
+.search-bar:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+}
+
+/* Active states */
+.nav-item.active {
+    border-bottom: 2px solid #FF5A5F;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* Dropdown transition */
+.dropdown-transition {
+    transition: all 0.3s ease;
+    transform-origin: top right;
+}
+
+/* Favorite button */
+.favorite-btn {
+    transition: all 0.2s ease;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile menu transition */
+.mobile-menu {
+    transition: max-height 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.mobile-menu.open {
+    max-height: 500px;
+}
